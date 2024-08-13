@@ -5,13 +5,17 @@
 }
 
 #container div{
-    width: 50%;
     display: flex;
     align-items: center;
 }
 
 #right{
+    width: 190px;
     justify-content: right;
+}
+
+#left{
+    width: calc(100% - 190px);
 }
 
 #left .nodes{
@@ -23,4 +27,16 @@
     display: inline;
     margin-right: 10px;
     margin: 0px 10px 0px 0px;
+}
+
+#right button{
+    width: 80px; height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+a:hover{
+    text-decoration: none;
 }
