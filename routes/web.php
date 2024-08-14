@@ -11,6 +11,10 @@ Route::get('/add-task', [TaskController::class, 'add'])->name('add');
 
 Route::post('/add-task', [TaskController::class, 'store'])->name('store');
 
+Route::get('/add-category', [TaskController::class, 'add_category'])->name('add-category');
+
+Route::post('/add-category', [TaskController::class, 'store_category'])->name('store-category');
+
 Route::get('/{task}', [TaskController::class, 'show'])->name('show');
 
 Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('edit');

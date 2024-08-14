@@ -24,7 +24,7 @@ class TaskController extends Controller
             if(!$category){
                 abort(404);
             }
-            $tasks = Task::where('category', $category)->get();
+            $tasks = Task::where('category', $category->name)->get();
         }
 
         return view('index', [
@@ -34,7 +34,7 @@ class TaskController extends Controller
     }
 
     public function add(){
-        return view('add');
+        return view('add', ['categories' => Category::all()]);
     }
 
     public function store(Request $request){
@@ -57,11 +57,24 @@ class TaskController extends Controller
     }
 
     public function edit(Task $task){
-        return view('edit', ['task' => $task]);
+        return view('edit', [
+            'task' => $task,
+            'categories' => Category::all()
+        ]);
     }
 
     public function update(Request $request, Task $task){
         $task->update($request->input());
         return redirect()->route('index');
     }   
+
+    public function add_category(){
+        return view('add-category');
+    }
+
+    public function store_category(Request $request){
+        Category::create($request->input());
+
+        return redirect()->route('index');
+    }
 }

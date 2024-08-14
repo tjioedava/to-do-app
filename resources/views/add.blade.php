@@ -3,6 +3,6 @@
     <x-navigation/>
     <hr>
     <form method="post" action="{{ route('store') }}">
-        <x-form/>
+        <x-form :categories="$categories"/>
     </form>
 </x-layout>

@@ -12,6 +12,6 @@ class Task extends Model
     protected $table = 'task';
 
     protected $fillable = [
-        'description', 'date'
+        'description', 'date', 'category'
     ];
 }
