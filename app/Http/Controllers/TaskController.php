@@ -8,9 +8,27 @@ use App\Models\Category;
 
 class TaskController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+
+        $category_name = $request->input('category');
+
+        if(!$category_name){
+            $category_name = 'All';
+        }
+
+        if($category_name == 'All'){
+            $tasks = Task::all();
+        }
+        else{
+            $category = Category::where('name', $category_name)->first();
+            if(!$category){
+                abort(404);
+            }
+            $tasks = Task::where('category', $category)->get();
+        }
+
         return view('index', [
-            'tasks' => Task::orderBy('date', 'desc')->get(),
+            'tasks' => $tasks,
             'categories' => Category::all()
         ]);
     }

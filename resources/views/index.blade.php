@@ -13,7 +13,7 @@
     <hr>
     <h3>Categories</h3>
     @foreach ($categories as $category)
-        <a href="#">{{ $category->name }}</a>
+        <a href="{{ route('index') . '?category=' . $category->name }}">{{ $category->name }}</a>
     @endforeach
     <hr>
     @foreach ($tasks as $task)

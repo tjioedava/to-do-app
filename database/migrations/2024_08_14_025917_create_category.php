@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('category', function (Blueprint $table) {
             $table->id();
-            $table->string('name', length: 31);
+            $table->string('name', length: 31)->unique();
             $table->timestamps();
         });
     }
