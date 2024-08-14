@@ -11,6 +11,11 @@
     <h1>To Do App</h1>
     <x-navigation/>
     <hr>
+    <h3>Categories</h3>
+    @foreach ($categories as $category)
+        <a href="#">{{ $category->name }}</a>
+    @endforeach
+    <hr>
     @foreach ($tasks as $task)
         <div id="container">
             <div id="left">
