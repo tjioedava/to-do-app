@@ -1,8 +1,9 @@
-<x-layout>
-    <h1>Add Task</h1>
-    <x-navigation/>
-    <hr>
+@extends('layouts.base')
+
+@section('header-title', 'Add Task')
+
+@section('content')
     <form method="post" action="{{ route('store') }}">
         <x-form :categories="$categories"/>
     </form>
-</x-layout>
+@endsection

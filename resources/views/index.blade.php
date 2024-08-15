@@ -1,20 +1,15 @@
-<x-layout>
+@extends('layouts.base')
 
-    @push('styles')
-        <link rel="stylesheet" href="{{ asset('css/individual/index.css') }}">
-    @endpush
+@push('sheets')
+    <link rel="stylesheet" href="{{ asset('css/individual/index.css') }}">
+@endpush
 
-    @push('scripts')
-        <script src="https://kit.fontawesome.com/19ef3fcdaf.js" crossorigin="anonymous"></script>
-    @endpush
+@push('head-scripts')
+    <script src="https://kit.fontawesome.com/19ef3fcdaf.js" crossorigin="anonymous"></script>
+@endpush
 
-    <h1>To Do App</h1>
-    <x-navigation/>
-    <hr>
-    <h3>Categories</h3>
-    @foreach ($categories as $category)
-        <a href="{{ route('index') . '?category=' . $category->name }}">{{ $category->name }}</a>
-    @endforeach
+@section('content')
+    <x-carousel-categories :categories="$categories"/>
     <hr>
     @foreach ($tasks as $task)
         <div id="container">
@@ -34,4 +29,4 @@
         </div>
         <hr>
     @endforeach
-</x-layout>
+@endsection

@@ -77,4 +77,24 @@ class TaskController extends Controller
 
         return redirect()->route('index');
     }
+
+    public function delete_category(){
+        return view('delete-category', ['categories' => Category::all()]);
+    }
+
+    public function destroy_category(Request $request){
+
+        $category = Category::where('name', $request->input('category'))->first();
+
+        $tasks = Task::where('category', $category->name)->get();
+
+        foreach ($tasks as $task){
+            $task->category = '';
+            $task->save();
+        }
+
+        $category->delete();
+
+        return redirect()->route('index');
+    }
 }

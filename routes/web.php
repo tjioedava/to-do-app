@@ -15,6 +15,10 @@ Route::get('/add-category', [TaskController::class, 'add_category'])->name('add-
 
 Route::post('/add-category', [TaskController::class, 'store_category'])->name('store-category');
 
+Route::get('/delete-category', [TaskController::class, 'delete_category'])->name('delete-category');
+
+Route::post('/delete-category', [TaskController::class, 'destroy_category'])->name('destroy-category');
+
 Route::get('/{task}', [TaskController::class, 'show'])->name('show');
 
 Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('edit');
