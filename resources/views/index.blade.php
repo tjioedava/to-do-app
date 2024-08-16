@@ -4,12 +4,8 @@
     <link rel="stylesheet" href="{{ asset('css/individual/index.css') }}">
 @endpush
 
-@push('head-scripts')
-    <script src="https://kit.fontawesome.com/19ef3fcdaf.js" crossorigin="anonymous"></script>
-@endpush
-
 @section('content')
-    <x-carousel-categories :categories="$categories"/>
+    <x-carousel-categories :pos="$carousel_pos" :categories="$categories"/>
     <hr>
     @foreach ($tasks as $task)
         <div id="container">

@@ -27,9 +27,33 @@ class TaskController extends Controller
             $tasks = Task::where('category', $category->name)->get();
         }
 
+        $carousel_pos = $request->input('carousel-pos');
+        if(!$carousel_pos){
+            $carousel_pos = 0;
+        }
+        else{
+            if(!ctype_digit($carousel_pos)){
+                abort(404);
+            }
+            $carousel_pos = (int)$carousel_pos;
+
+            $categories_count = count(Category::all());
+            if($categories_count <= 3){
+                if($carousel_pos != 0){
+                    abort(404);
+                }
+            }
+            else{
+                if($carousel_pos > $categories_count - 2){
+                    abort(404);
+                }
+            }
+        }
+
         return view('index', [
             'tasks' => $tasks,
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'carousel_pos' => $carousel_pos, 
         ]);
     }
 
