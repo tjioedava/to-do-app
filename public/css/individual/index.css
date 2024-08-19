@@ -38,10 +38,19 @@
 #description-container{
     width: 50%;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 #date-container{
     width: 20%;
+}
+
+#category-container{
+    width: 30%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 a:hover{

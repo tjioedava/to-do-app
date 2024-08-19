@@ -35,10 +35,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.carousel-items a{
-    color: #e6e6e6;
+.carousel-items:hover{
+    background-color: #2d4f77;
 }
 
 #carousel-container{

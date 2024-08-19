@@ -38,7 +38,7 @@
         const carouselItem = carouselItems[0];
         const carouselLength = carouselItems.length;
         const carouselItemStyle = window.getComputedStyle(carouselItem);
-        const offsetX = parseInt(carouselItemStyle.width) + parseInt(carouselItemStyle.marginRight)
+        const offsetX = parseInt(carouselItemStyle.width) + parseInt(carouselItemStyle.marginRight);
         let carouselPos = parseInt(carousel.getAttribute('data-carousel-pos'));
 
         carouselTrack.style.transitionProperty = 'none';

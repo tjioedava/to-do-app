@@ -1,0 +1,21 @@
+#control-panel{
+    display: flex;
+    background-color: #1b1b2f;
+    height: 35px;
+    border: 1.5px solid #1b1b2f;
+    border-radius: 5px;
+}
+
+#control-panel > div{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #1b1b2f;
+    border-radius: 3px;
+    background-color: #1f4068;
+}
+
+#control-panel > div:hover{
+    background-color: #2d4f77;
+}
