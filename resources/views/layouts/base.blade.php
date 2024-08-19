@@ -3,6 +3,7 @@
         'Home' => route('index'),
         'Add Task' => route('add'),
         'Add Category' => route('add-category'),
+        'Edit Category' => route('edit-category'),
         'Delete Category' => route('delete-category'), 
     ];
 ?>

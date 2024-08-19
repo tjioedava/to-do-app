@@ -96,6 +96,38 @@ class TaskController extends Controller
         return view('add-category');
     }
 
+    public function edit_category(Request $request){
+        $context = ['categories' => Category::all()];
+
+        $category_name = $request->input('category');
+
+        if(!$category_name){
+            return view('edit-category', $context);            
+        }
+        $category = Category::where('name', $category_name)->first();
+
+        if($category){
+           $context['selected_category'] = $category;
+        }
+
+        return view('edit-category', $context);
+    }
+
+    public function update_category(Request $request){
+        $category = Category::where('name', $request->input('old-category-name'))->first();
+        $new_category_name = $request->input('name');
+
+        $tasks = Task::where('category', $category->name)->get();
+        foreach ($tasks as $task){
+            $task->category = $new_category_name;
+            $task->save();
+        }
+        $category->name = $new_category_name;
+        $category->save();
+
+        return redirect()->route('index');
+    }
+
     public function store_category(Request $request){
         Category::create($request->input());
 
