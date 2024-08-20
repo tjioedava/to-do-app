@@ -13,17 +13,20 @@ class TaskController extends Controller
 
         $category_name = $request->input('category');
 
+        //if the category query is equivalent to null (unspecified / empty) or explicit all
         if(!$category_name || $category_name == 'All'){
             $tasks = Task::all();
         }
         else{
             $category = Category::where('name', $category_name)->first();
+            //if there exists no category that matches the query value: fail
             if(!$category){
                 abort(404);
             }
             $tasks = Task::where('category', $category->name)->get();
         }
 
+        //validate the carousel position query. fail if the query value is non numerical or out of range
         $carousel_pos = $request->input('carousel-pos');
         if(!$carousel_pos){
             $carousel_pos = 0;

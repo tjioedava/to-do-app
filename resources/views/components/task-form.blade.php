@@ -9,8 +9,12 @@
 <label for="category">Category:</label>
 <select name="category">
     <option value="">None</option>
+    
+    <!--list each category as option for input-->
     @if ($categories)
         @foreach ($categories as $category)
+
+            <!--pre-select the default value-->
             <option value="{{ $category->name }}" 
                 {{ old('category', $task->category ?? '') == $category->name ? 'selected' : ''}}>
                 {{ $category->name }}

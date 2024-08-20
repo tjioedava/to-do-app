@@ -9,9 +9,9 @@ Route::get('/', function (){
 });
 
 Route::controller(TaskController::class)->group(function (){
-    Route::get('/home', 'index')->name('index');
+    Route::get('/index', 'index')->name('index');
 
-    Route::post('/home', 'destroy')->name('destroy');
+    Route::post('/index', 'destroy')->name('destroy');
 
     Route::get('/task/add', 'add')->name('add');
 

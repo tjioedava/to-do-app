@@ -7,6 +7,8 @@
 @section('content')
     <x-carousel-categories :pos="$carousel_pos" :categories="$categories"/>
     <hr>
+
+    <!--displaying section for each task-->
     @foreach ($tasks as $task)
         <div id="container">
             <div id="non-controls-container">

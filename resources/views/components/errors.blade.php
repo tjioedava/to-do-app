@@ -1,3 +1,4 @@
+<!--component to display errors (if any)-->
 <div>
     @if ($errors->any())
         <ul>
