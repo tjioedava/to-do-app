@@ -26,6 +26,11 @@
     background-color: #2d4f77;
 }
 
+.btn:active{
+    background-color: #1f4068;
+    scale: 0.95;
+}
+
 .carousel-items{
     min-width: 225px;
     height: 40px;
@@ -38,10 +43,17 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transition: transform 0.2s ease-out;
 }
 
 .carousel-items:hover{
     background-color: #2d4f77;
+    transform: translateY(3px);
+}
+
+.carousel-items:active{
+    transform: translateY(0px);
+    background-color: #1f4068;
 }
 
 #carousel-container{

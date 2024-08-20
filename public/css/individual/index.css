@@ -26,6 +26,10 @@
     margin: 0px;
 }
 
+#controls-container button:hover{
+    scale: 0.95;
+}
+
 #non-controls-container{
     width: calc(100% - 190px);
     justify-content: left;

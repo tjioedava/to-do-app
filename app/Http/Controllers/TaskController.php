@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\Category;
+use App\Http\Requests\SaveTaskRequest;
 
 class TaskController extends Controller
 {
@@ -54,9 +55,9 @@ class TaskController extends Controller
         return view('tasks.add', compact('categories'));
     }
 
-    public function store(Request $request){
-        Task::create($request->input());
-        return redirect()->route('index');
+    public function store(SaveTaskRequest $request){
+        Task::create($request->validated());
+        return redirect()->route('index')->with('status', 'Task added successfully');
     }
 
     public function destroy(Request $request){
@@ -74,8 +75,8 @@ class TaskController extends Controller
         return view('tasks.edit', compact('task', 'categories'));
     }
 
-    public function update(Request $request, Task $task){
-        $task->update($request->input());
-        return redirect()->route('index');
+    public function update(SaveTaskRequest $request, Task $task){
+        $task->update($request->validated());
+        return redirect()->route('index')->with('status', 'Task updated successfully');
     }   
 }

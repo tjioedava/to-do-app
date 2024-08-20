@@ -14,8 +14,15 @@
     border: 1.5px solid #1b1b2f;
     border-radius: 3px;
     background-color: #1f4068;
+    transition: transform 0.2s ease-in;
 }
 
 #control-panel > div:hover{
     background-color: #2d4f77;
+    transform: translateY(3px);
+}
+
+#control-panel > div:active{
+    background-color: #1f4068;
+    transform: translateY(0px);
 }

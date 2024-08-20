@@ -36,6 +36,8 @@
             <hr>
         </header>
         <body>
+            <x-status-display/>
+            <x-errors/>
             @yield('content')
         </body>
 
