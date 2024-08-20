@@ -1,6 +1,14 @@
 @extends('layouts.base')
 
+@push('sheets')
+    <link rel="stylesheet" href="{{ asset('css/individual/control-panel.css') }}">
+@endpush
+
 @section('header-title', 'Show Task: ' . $task->description)
+
+@section('header')
+    <x-control-panel/>
+@endsection
 
 @section('content')
     <h3>{{ $task->description }}</h3>

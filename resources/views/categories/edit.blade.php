@@ -1,6 +1,15 @@
 @extends('layouts.base')
 
+@push('sheets')
+    <link rel="stylesheet" href="{{ asset('css/individual/control-panel.css') }}">
+@endpush
+
 @section('header-title', 'Edit Category')
+
+@section('header')
+    <!--select / mark the appropriate button-->
+    <x-control-panel :selectedButton="'Edit Category'"/>
+@endsection
 
 @section('content')
     <form>

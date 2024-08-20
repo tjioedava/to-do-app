@@ -26,3 +26,8 @@
     background-color: #1f4068;
     transform: translateY(0px);
 }
+
+#selected{
+    background-color: #2d4f77;
+    transform: translateY(3px);
+}

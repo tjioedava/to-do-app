@@ -2,10 +2,16 @@
 
 @push('sheets')
     <link rel="stylesheet" href="{{ asset('css/individual/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/individual/control-panel.css') }}">
 @endpush
 
+@section('header')
+    <!--select / mark the appropriate button-->
+    <x-control-panel :selectedButton="'Home'"/>
+@endsection
+
 @section('content')
-    <x-carousel-categories :pos="$carousel_pos" :categories="$categories"/>
+    <x-carousel-categories :pos="$carousel_pos" :categories="$categories" :selectedCategory="$category_name"/> <!--select / mark the appropriate button-->
     <hr>
 
     <!--displaying section for each task-->

@@ -1,15 +1,3 @@
-
-<?php
-    //in-server helper data
-    $titles_and_routes = [
-        'Home' => route('index'),
-        'Add Task' => route('add'),
-        'Add Category' => route('add-category'),
-        'Edit Category' => route('edit-category'),
-        'Delete Category' => route('delete-category'), 
-    ];
-?>
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,7 +6,6 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
         <link rel="stylesheet" href="{{ asset('css/global.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/individual/control-panel.css') }}">
 
         <!--for inserting additional stylesheet from child files-->
         @stack('sheets')
@@ -33,16 +20,12 @@
     </head>
     <body>
         <header>
-
             <!--modify the header title from child files or default-->
             <h1>@yield('header-title', 'To Do Application')</h1>
-            
-            <div id="control-panel">
-                @foreach ($titles_and_routes as $title => $route)
-                    <!--buttonlike box for each link, with destination (href) embedded in the data-href attr-->
-                    <div class="no-select" data-href="{{ $route }}">{{ $title }}</div>
-                @endforeach
-            </div>
+
+             <!--pushed header from child files-->
+            @yield('header')
+        
             <hr>
         </header>
         <body>
@@ -57,7 +40,7 @@
         <script>
             const controlPanelBtns = document.querySelectorAll('#control-panel > div');
             controlPanelBtns.forEach(function (button){
-                
+
                 //bind each buttonlike box to access certain link whenever clicked
                 button.addEventListener('click', function (){
                     window.location.href = button.getAttribute('data-href');

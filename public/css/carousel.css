@@ -46,6 +46,11 @@
     transition: transform 0.2s ease-out;
 }
 
+#selected{
+    background-color: #2d4f77;
+    transform: translateY(3px);
+}
+
 .carousel-items:hover{
     background-color: #2d4f77;
     transform: translateY(3px);

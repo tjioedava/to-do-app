@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
 @endpush
 
-<h3>Categories</h3>
+<h3>Categories (Current: {{ $selectedCategory }})</h3>
 
 <!--containing information about last carousel position / index-->
 <div id="carousel-area" data-carousel-pos="{{ $pos }}">
@@ -14,15 +14,18 @@
         <div id="carousel-track">
 
             <!--each item holds data href for on-click listener binding purpose on the script-->
-            <div class="carousel-items no-select" data-href="{{ route('index') . '?category=All'}}"> <!--concating queries-->
+            <div class="carousel-items no-select" data-href="{{ route('index') . '?category=All'}}"
+            {{ $selectedCategory == 'All' ? 'id=selected' : '' }}> <!--concating queries-->
                 All
             </div>
 
             <!--creating carousel item for each category-->
             @foreach ($categories as $category)
-                <div class="carousel-items no-select" data-href="{{ route('index') . '?category=' . $category->name }}">
+                <div class="carousel-items no-select" data-href="{{ route('index') . '?category=' . $category->name }}"
+                    {{ $category->name == $selectedCategory ? 'id=selected' : '' }}>
                     {{ $category->name }}
                 </div>
+                <!--apply selected id to the matching item (parameterized from the component caller)-->
             @endforeach
         </div>
     </div>

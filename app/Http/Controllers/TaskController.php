@@ -13,8 +13,12 @@ class TaskController extends Controller
 
         $category_name = $request->input('category');
 
-        //if the category query is equivalent to null (unspecified / empty) or explicit all
-        if(!$category_name || $category_name == 'All'){
+        //assume category is all when no query or the value is equivalent to null
+        if(!$category_name){
+            $category_name = 'All';
+        }
+
+        if(strtolower($category_name) == 'all'){
             $tasks = Task::all();
         }
         else{
@@ -50,7 +54,12 @@ class TaskController extends Controller
             }
         }
         $categories = Category::all();
-        return view('index', compact('tasks', 'categories', 'carousel_pos'));
+
+        /*category_name will be passed for parameterizing carousel component
+        so that corresponding item / button will be selected*/
+        $category_name = ucfirst($category_name);
+        
+        return view('index', compact('tasks', 'categories', 'carousel_pos', 'category_name'));
     }
 
     public function add(){
