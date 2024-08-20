@@ -2,29 +2,38 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CategoryController;
 
-Route::get('/', [TaskController::class, 'index'])->name('index');
+Route::get('/', function (){
+    return redirect()->route('index');
+});
 
-Route::post('/', [TaskController::class, 'destroy'])->name('destroy');
+Route::controller(TaskController::class)->group(function (){
+    Route::get('/home', 'index')->name('index');
 
-Route::get('/add-task', [TaskController::class, 'add'])->name('add');
+    Route::post('/home', 'destroy')->name('destroy');
 
-Route::post('/add-task', [TaskController::class, 'store'])->name('store');
+    Route::get('/task/add', 'add')->name('add');
 
-Route::get('/add-category', [TaskController::class, 'add_category'])->name('add-category');
+    Route::post('/task/add', 'store')->name('store');
 
-Route::post('/add-category', [TaskController::class, 'store_category'])->name('store-category');
+    Route::get('/task/{task}', 'show')->name('show');
 
-Route::get('/edit-category', [TaskController::class, 'edit_category'])->name('edit-category');
+    Route::get('/task/{task}/edit', 'edit')->name('edit');
 
-Route::patch('/update-category', [TaskController::class, 'update_category'])->name('update-category');
+    Route::patch('/task/{task}/edit', 'update')->name('update');
+});
 
-Route::get('/delete-category', [TaskController::class, 'delete_category'])->name('delete-category');
+Route::controller(CategoryController::class)->group(function (){
+    Route::get('/category/add', 'add')->name('add-category');
 
-Route::post('/delete-category', [TaskController::class, 'destroy_category'])->name('destroy-category');
+    Route::post('/category/add', 'store')->name('store-category');
 
-Route::get('/{task}', [TaskController::class, 'show'])->name('show');
+    Route::get('/category/edit', 'edit')->name('edit-category');
 
-Route::get('/{task}/edit', [TaskController::class, 'edit'])->name('edit');
+    Route::patch('/category/edit', 'update')->name('update-category');
 
-Route::patch('/{task}/edit', [TaskController::class, 'update'])->name('update');
+    Route::get('/category/delete', 'delete')->name('delete-category');
+
+    Route::post('/category/delete', 'destroy')->name('destroy-category');
+});

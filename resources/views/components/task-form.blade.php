@@ -4,7 +4,7 @@
 <input type="text" name="description" value="{{ old('description', $task->description ?? '') }}">
 
 <label for="date">Date</label>
-<input type="date" name="date" value="{{ old('date', $task->date ?? '') }}">
+<input type="date" name="date" value="{{ old('date', $task->date ?? date('Y-m-d')) }}">
 
 <label for="category">Category:</label>
 <select name="category">

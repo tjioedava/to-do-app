@@ -5,6 +5,6 @@
 @section('content')
     <form method="post" action="{{ route('update', $task->id) }}">
         @method('PATCH')
-        <x-form :task="$task" :categories="$categories"/>
+        <x-task-form :task="$task" :categories="$categories"/>
     </form>
 @endsection

@@ -4,6 +4,6 @@
 
 @section('content')
     <form method="post" action="{{ route('store') }}">
-        <x-form :categories="$categories"/>
+        <x-task-form :categories="$categories"/>
     </form>
 @endsection

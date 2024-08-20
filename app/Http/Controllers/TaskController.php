@@ -12,11 +12,7 @@ class TaskController extends Controller
 
         $category_name = $request->input('category');
 
-        if(!$category_name){
-            $category_name = 'All';
-        }
-
-        if($category_name == 'All'){
+        if(!$category_name || $category_name == 'All'){
             $tasks = Task::all();
         }
         else{
@@ -37,8 +33,8 @@ class TaskController extends Controller
             }
             $carousel_pos = (int)$carousel_pos;
 
-            $categories_count = count(Category::all());
-            if($categories_count <= 3){
+            $categories_count = Category::count();
+            if($categories_count <= 2){
                 if($carousel_pos != 0){
                     abort(404);
                 }
@@ -49,108 +45,37 @@ class TaskController extends Controller
                 }
             }
         }
-
-        return view('index', [
-            'tasks' => $tasks,
-            'categories' => Category::all(),
-            'carousel_pos' => $carousel_pos, 
-        ]);
+        $categories = Category::all();
+        return view('index', compact('tasks', 'categories', 'carousel_pos'));
     }
 
     public function add(){
-        return view('add', ['categories' => Category::all()]);
+        $categories = Category::all();
+        return view('tasks.add', compact('categories'));
     }
 
     public function store(Request $request){
-
         Task::create($request->input());
-
         return redirect()->route('index');
     }
 
     public function destroy(Request $request){
         $id = $request->input('button');
-
         Task::find($id)->delete();
-
         return redirect()->route('index');
     }
 
     public function show(Task $task){
-        return view('show', ['task' => $task]);
+        return view('tasks.show', compact('task'));
     }
 
     public function edit(Task $task){
-        return view('edit', [
-            'task' => $task,
-            'categories' => Category::all()
-        ]);
+        $categories = Category::all();
+        return view('tasks.edit', compact('task', 'categories'));
     }
 
     public function update(Request $request, Task $task){
         $task->update($request->input());
         return redirect()->route('index');
     }   
-
-    public function add_category(){
-        return view('add-category');
-    }
-
-    public function edit_category(Request $request){
-        $context = ['categories' => Category::all()];
-
-        $category_name = $request->input('category');
-
-        if(!$category_name){
-            return view('edit-category', $context);            
-        }
-        $category = Category::where('name', $category_name)->first();
-
-        if($category){
-           $context['selected_category'] = $category;
-        }
-
-        return view('edit-category', $context);
-    }
-
-    public function update_category(Request $request){
-        $category = Category::where('name', $request->input('old-category-name'))->first();
-        $new_category_name = $request->input('name');
-
-        $tasks = Task::where('category', $category->name)->get();
-        foreach ($tasks as $task){
-            $task->category = $new_category_name;
-            $task->save();
-        }
-        $category->name = $new_category_name;
-        $category->save();
-
-        return redirect()->route('index');
-    }
-
-    public function store_category(Request $request){
-        Category::create($request->input());
-
-        return redirect()->route('index');
-    }
-
-    public function delete_category(){
-        return view('delete-category', ['categories' => Category::all()]);
-    }
-
-    public function destroy_category(Request $request){
-
-        $category = Category::where('name', $request->input('category'))->first();
-
-        $tasks = Task::where('category', $category->name)->get();
-
-        foreach ($tasks as $task){
-            $task->category = '';
-            $task->save();
-        }
-
-        $category->delete();
-
-        return redirect()->route('index');
-    }
 }
