@@ -52,6 +52,10 @@ class CategoryController extends Controller
         $request->validated();
 
         $category = Category::where('name', $request->input('old-category-name'))->first();
+        if(!$category){
+            abort(404);
+        }
+
         $new_category_name = $request->input('name');
 
         //change the category name for all the task that has corresponding category
@@ -76,7 +80,9 @@ class CategoryController extends Controller
 
     public function destroy(Request $request){
         $category = Category::where('name', $request->input('category'))->first();
-
+        if(!$category){
+            abort(404); 
+        }
         //making the category of associated task null or empty
         Task::where('category', $category->name)->update(['category' => '']);
 

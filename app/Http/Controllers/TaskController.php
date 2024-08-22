@@ -74,6 +74,10 @@ class TaskController extends Controller
 
     public function destroy(Request $request){
         $id = $request->input('button');
+        $task = Task::find($id);
+        if(!$task){
+            abort(404);
+        }
         Task::find($id)->delete();
         return redirect()->route('index');
     }
